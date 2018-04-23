@@ -53,7 +53,7 @@ export class Calendar {
     weekArray = []; // Array for each row of the calendar
     lastSelect: number = 0; // Record the last clicked location
 
-    weekHead: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    weekHead: string[] = ['Zo', 'Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za'];
 
     constructor() {
       this.today();
@@ -134,6 +134,7 @@ export class Calendar {
                         isToday: false,
                         isSelect: false,
                         hasEvent: (this.isInEvents(year, 11, lastMonthStart+i)) ? true : false,
+                        theEvent: this.events[i].event,
                     })
                 } else {
                     this.dateArray.push({
@@ -144,6 +145,7 @@ export class Calendar {
                         isToday: false,
                         isSelect: false,
                         hasEvent: (this.isInEvents(year, month-1, lastMonthStart+i)) ? true : false,
+                        theEvent: this.events[i].event,
                     })
                 }
 
@@ -160,6 +162,7 @@ export class Calendar {
                 isToday: false,
                 isSelect: false,
                 hasEvent: (this.isInEvents(year, month, i+1)) ? true : false,
+                theEvent: this.events[i].event,
             })
         }
 
@@ -186,6 +189,7 @@ export class Calendar {
                         isToday: false,
                         isSelect: false,
                         hasEvent: (this.isInEvents(year, 0, i+1)) ? true : false,
+                        theEvent: this.events[i].event,
                     })
                 } else {
                     this.dateArray.push({
@@ -196,6 +200,7 @@ export class Calendar {
                         isToday: false,
                         isSelect: false,
                         hasEvent: (this.isInEvents(year, month+1, i+1)) ? true : false,
+                        theEvent: this.events[i].event,
                     })
                 }
 
@@ -259,7 +264,8 @@ export class Calendar {
 interface singularDate {
   year: number,
   month: number,
-  date: number
+  date: number,
+  event: string,
 }
 
 // Each grid item of a calendar
@@ -271,4 +277,5 @@ interface dateObj {
     isToday?: boolean,
     isSelect?: boolean,
     hasEvent?: boolean,
+    theEvent: string,
 }
